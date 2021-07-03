@@ -1,6 +1,3 @@
 /vendor
 /.idea
-.gitignore
-.phpunit.result.cache
 *.xml
-*.php
