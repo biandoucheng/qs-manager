@@ -1,0 +1,34 @@
+{
+    "name": "biandou/qs-manager",
+    "description": "便于将参数转化成查询结构的方案",
+    "license": "MIT",
+    "keywords": ["qs-manager","query","good","biandou"],
+    "authors": [
+        {
+            "name": "biandou",
+            "email": "mianbizhecy@163.com"
+        }
+    ],
+    "homepage": "https://github.com/biandoucheng/qs-manager",
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "QSM\\": "src/"
+        },
+        "classmap": [
+            "src/Value",
+            "src/Help"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}
