@@ -66,11 +66,6 @@ class Output
     public $summary;
 
     /*
-     * @var bool 是否对单页数据汇总
-     * */
-    public $pageSummary;
-
-    /*
      * @var array 需要提取出来,做附属信息查询的字段值
      * */
     public $attachFields;
@@ -99,7 +94,6 @@ class Output
         $this->first            = false;
         $this->pluck            = [];
         $this->summary          = false;
-        $this->pageSummary      = false;
         $this->attachFields     = [];
     }
 
@@ -134,7 +128,6 @@ class Output
         $qs->first          = $this->first;
         $qs->pluck          = $this->pluck;
         $qs->summary        = $this->summary;
-        $qs->pageSummary    = $this->pageSummary;
         $qs->attachFields   = $this->attachFields;
     }
 }
