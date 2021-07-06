@@ -179,7 +179,7 @@ class Where
     public static function adapterConditionOpt(string $opt,$val,bool $comma=false):Condition
     {
         $con = new Condition();
-        if($comma) {
+        if($comma && is_string($val)) {
             $con->val = StrHealper::splitStrByCommaOrNot($val);
         }else {
             $con->val = $val;
