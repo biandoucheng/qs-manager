@@ -267,7 +267,7 @@ class Where
     public static function adapterNormalConditionOpt(string $opt,$val,bool $comma):Condition
     {
         $con = new Condition();
-        if($comma) {
+        if($comma && is_string($val)) {
             $con->val = StrHealper::splitStrByCommaOrNot($val);
         }else {
             $con->val = $val;
