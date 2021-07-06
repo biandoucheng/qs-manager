@@ -80,15 +80,14 @@ class QSConfig
      */
     public static function correctVal(Cell $cell,$val)
     {
-        switch ($val) {
-            case $cell->allVal:
-                return new AllValue();
-            case $cell->mergeVal:
-                return new MergeValue();
-            case $cell->noSetVal:
-                return new NotSetValue();
+        if($val === $cell->allVal) {
+            return new AllValue();
+        }else if($val === $cell->mergeVal) {
+            return new MergeValue();
+        }else if($val === $cell->noSetVal) {
+            return new NotSetValue();
+        }else {
+            return $val;
         }
-
-        return $val;
     }
 }
