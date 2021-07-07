@@ -154,6 +154,7 @@ class QS
     public function reload()
     {
         $this->excel = false;
+        $this->excelName = "excel";
         $this->asExportSource = false;
         $this->downloadName = "download.csv";
         $this->header = [];
