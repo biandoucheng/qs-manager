@@ -83,7 +83,7 @@ class Output
      */
     public function __construct()
     {
-        $this->page             = 1;
+        $this->page             = 0;
         $this->pageName         = "page";
         $this->limit            = 15;
         $this->limitName        = "limit";
