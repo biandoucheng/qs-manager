@@ -83,6 +83,11 @@ class QSManager
         #导出处理
         if(isset($receive[$qs->excelName])) {
             $qs->excel = (bool)$receive[$qs->excelName];
+
+            #导出输出查询实例
+            if($qs->excel) {
+                $qs->asExportSource = true;
+            }
         }
 
         #输出参数处理
