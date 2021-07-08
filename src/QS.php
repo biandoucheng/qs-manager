@@ -60,6 +60,11 @@ class QS
     public $select;
 
     /*
+     * @var array 字段的默认值
+     * */
+    public $default;
+
+    /*
      * @var int 导出分页,0代表不分页
      * */
     public $page;
@@ -160,6 +165,7 @@ class QS
         $this->header = [];
         $this->fields = [];
         $this->select = [];
+        $this->default = [];
         $this->page = 0;
         $this->pageName = "page";
         $this->limit = 30;

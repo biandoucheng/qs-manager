@@ -102,6 +102,9 @@ class QSManager
 
                 #字段输出顺序
                 $qs->index[$realField]  = $cell->index;
+
+                #默认值
+                $qs->default[$cell->name] = $cell->def;
             }
 
             #字段查询控制
