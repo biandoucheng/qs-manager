@@ -55,10 +55,17 @@ class QSConfig
                 $cell->val = self::correctVal($cell,$receive[$cell->name]);
             }
 
-            #没有允许输出的非附属字段强制不输出
-            if($abs && !$cell->isAttach() && !isset($columns[$cell->name])) {
-                $cell->showNot = true;
-                $cell->show = false;
+            #指定输出字段的处理
+            if($abs && !$cell->isAttach()) {
+                #强制输出
+                if(isset($columns[$cell->name])) {
+                    $cell->showNot = false;
+                    $cell->show = true;
+                }else {
+                    #强制不输出
+                    $cell->showNot = true;
+                    $cell->show = false;
+                }
             }
 
             #装箱
