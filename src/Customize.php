@@ -20,22 +20,22 @@ class Customize
     /*
      * @var string 查询条件,eg:=,in,<>,not in
      * */
-    public $opt;
+    public $opt = "";
 
     /*
      * @var string 排序,eg:ASC,DESC
      * */
-    public $order;
+    public $order = "";
 
     /*
      * @var int 导出列索引,指excel导出时某个列所在位置,从左到右0->+
      * */
-    public $index;
+    public $index = 0;
 
     /*
      * @var string 输出别名
      * */
-    public $alias;
+    public $alias = "";
 
 
     public function __construct(array $customizes = [])

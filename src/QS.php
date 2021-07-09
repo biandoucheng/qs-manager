@@ -21,168 +21,128 @@ class QS
     /*
      * @var bool 是否是导出操作
      * */
-    public $excel;
+    public $excel = false;
 
     /*
      * @var bool 导出控制字段名称
      * */
-    public $excelName;
+    public $excelName = "excel";
 
     /*
      * @var bool 是否作为导出数据源
      * */
-    public $asExportSource;
+    public $asExportSource = false;
 
     /*
      * @var string 导出文件名称
      * */
-    public $downloadName;
+    public $downloadName = "download.csv";
 
     /*
      * @var array 导出表头
      * */
-    public $header;
+    public $header = [];
 
     /*
      * @var array index 输出字段的顺序
      * */
-    public $index;
+    public $index = [];
 
     /*
      * @var array 参与输出字段的实际数据表字段,一定是真实字段  eg:['ss'=>'SUM(ss) AS ss','bb'=>bb ...]
      * */
-    public $fields;
+    public $fields = [];
 
     /*
      * @var array 参与输出字段的实际数据表字段,不一定是真实字段 eg:['ss'=>true]
      * 键的值是无意义的
      * */
-    public $select;
+    public $select = [];
 
     /*
      * @var array 字段的默认值
      * */
-    public $default;
+    public $default = [];
 
     /*
      * @var int 导出分页,0代表不分页
      * */
-    public $page;
+    public $page = 0;
 
     /*
      * @var string 页码名称
      * */
-    public $pageName;
+    public $pageName = "page";
 
     /*
      * @var int 分页行数,0则默认15
      * */
-    public $limit;
+    public $limit = 15;
 
     /*
      * @var string 分页行数名称
      * */
-    public $limitName;
+    public $limitName = "limit";
 
     /*
      * @var array where条件,字段=>Condition对象
      * */
-    public $where;
+    public $where = [];
 
     /*
      * @var array 输入where条件字段。不管是否是真实参与查询都记录
      * */
-    public $whereOriginal;
+    public $whereOriginal = [];
 
     /*
      * @var array 分组字段
      * */
-    public $group;
+    public $group = [];
 
     /*
      * @var array 汇总需要查询的字段
      * */
-    public $summaryFields;
+    public $summaryFields = [];
 
     /*
      * @var array 排序 field=>ASC
      * */
-    public $order;
+    public $order = [];
 
     /*
      * @var array laravel Model|Db 的pluck
      * */
-    public $pluck;
+    public $pluck = [];
 
     /*
      * @var string 汇总某个字段,空代表不汇总 eg:sum=>income 对收益汇总
      * */
-    public $sum;
+    public $sum = "";
 
     /*
      * @var string 计数,空代表不汇总
      * */
-    public $count;
+    public $count = "";
 
     /*
      * @var bool 是否只查询一条数据
      * */
-    public $first;
+    public $first = false;
 
     /*
      * @var bool 是否对数据汇总,默认不汇总
      * */
-    public $summary;
+    public $summary = [];
 
     /*
      * @var bool 是否只进行汇总,不查询详细数据
      * */
-    public $onlySummary;
+    public $onlySummary = false;
 
     /*
      * @var array 需要提取出来,做附属信息查询的字段值
      * */
-    public $attachFields;
-
-
-    public function __construct()
-    {
-        $this->reload();
-    }
-
-    /**
-     *@description 重置属性值
-     *
-     *@author biandou
-     *@date 2021/6/15 12:35
-     */
-    public function reload()
-    {
-        $this->excel = false;
-        $this->excelName = "excel";
-        $this->asExportSource = false;
-        $this->downloadName = "download.csv";
-        $this->header = [];
-        $this->fields = [];
-        $this->select = [];
-        $this->default = [];
-        $this->page = 0;
-        $this->pageName = "page";
-        $this->limit = 30;
-        $this->limitName = "limit";
-        $this->where = [];
-        $this->whereOriginal = [];
-        $this->group = [];
-        $this->summaryFields = [];
-        $this->group = [];
-        $this->order = [];
-        $this->pluck = [];
-        $this->sum = "";
-        $this->count = "";
-        $this->first = false;
-        $this->summary      = false;
-        $this->attachFields = [];
-    }
+    public $attachFields = [];
 
     /**
      *@description 判断查询结果是否是只有一行的

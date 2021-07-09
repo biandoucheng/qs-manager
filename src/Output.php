@@ -18,84 +18,62 @@ class Output
     /*
      * @var int 导出分页,0代表不分页
      * */
-    public $page;
+    public $page = 0;
 
     /*
      * @var string 页码名称
      * */
-    public $pageName;
+    public $pageName = "page";
 
     /*
      * @var int 分页行数,0则默认15
      * */
-    public $limit;
+    public $limit = 15;
 
     /*
      * @var string 分页行数名称
      * */
-    public $limitName;
+    public $limitName = "limit";
 
     /*
      * @var bool 是否导出,默认不导出
      * */
-    public $excel;
+    public $excel = false;
 
     /*
      * @var string 导出名称
      * */
-    public $downloadName;
+    public $downloadName = "download.csv";
 
     /*
-     * @var bool 是否是但字段求和,默认不是
+     * @var string 是否是但字段求和,默认不是
      * */
-    public $sum;
+    public $sum = "";
 
     /*
      * @var bool 是否只查询一条数据,默认不是
      * */
-    public $first;
+    public $first = false;
 
     /*
      * @var array pluck提取字段
      * */
-    public $pluck;
+    public $pluck = [];
 
     /*
      * @var bool 是否对数据汇总,默认不汇总
      * */
-    public $summary;
+    public $summary = false;
 
     /*
      * @var array 需要提取出来,做附属信息查询的字段值
      * */
-    public $attachFields;
+    public $attachFields = [];
 
     /*
      * @var bool 是否作为导出数据源
      * */
-    public $asExportSource;
-
-    /**
-     *@description 初始化
-     *
-     *@author biandou
-     *@date 2021/6/18 16:28
-     */
-    public function __construct()
-    {
-        $this->page             = 0;
-        $this->pageName         = "page";
-        $this->limit            = 15;
-        $this->limitName        = "limit";
-        $this->excel            = false;
-        $this->asExportSource   = false;
-        $this->downloadName     = "download.csv";
-        $this->sum              = false;
-        $this->first            = false;
-        $this->pluck            = [];
-        $this->summary          = false;
-        $this->attachFields     = [];
-    }
+    public $asExportSource = false;
 
     /**
      *@description 定义输出属性
