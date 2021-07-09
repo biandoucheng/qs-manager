@@ -73,9 +73,9 @@ class Result
      *@author biandou
      *@date 2021/7/2 14:00
      *
-     *@return array
+     *@return mixed
      */
-    public function toResponse():array
+    public function toResponse()
     {
         #分页
         if($this->page) {
