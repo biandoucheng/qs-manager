@@ -123,6 +123,7 @@ class QSModel
             }
             foreach ($this->result->data as $item) {
                 foreach ($qs->attachFields as $field) {
+                    $item = (array)$item;
                     if(isset($item[$field])) {
                         $this->result->attach[$field][] = $item[$field];
                     }
