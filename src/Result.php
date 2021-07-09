@@ -78,34 +78,29 @@ class Result
     public function toResponse():array
     {
         #分页
-        $pager = [];
-        if(!empty($this->page)) {
-            $pager["current_page"] = $this->page;
-            $pager["per_page"] = $this->limit;
-            $pager["total"] = $this->total;
-        }
-
-        #汇总及数据行
-        $data = [];
-        if($this->onlySummary) {
-            $data = $this->summary;
+        if($this->page) {
+            $out = [
+                'current_page' => $this->page,
+                'per_page' => $this->limit,
+                'total' => $this->total,
+                'data' => $this->data
+            ];
+            if($this->summary) {
+                $out['summary'] = $this->summary;
+            }
+        }else if($this->onlySummary){
+            $out = $this->summary;
         }else {
-            #携带汇总行
             if($this->needSummary) {
-                $data['summary'] = $this->summary;
-                $data['data'] = $this->data;
+                $out = [
+                    'data' => $this->data,
+                    'summary' => $this->summary
+                ];
             }else {
-                $data = $this->data;
+                $out = $this->data;
             }
         }
 
-        #输出合并
-        if(!empty($pager)) {
-            $pager['data'] = $data;
-        }else {
-            $pager = $data;
-        }
-
-        return $pager;
+        return $out;
     }
 }

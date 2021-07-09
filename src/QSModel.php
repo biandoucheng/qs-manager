@@ -56,24 +56,24 @@ class QSModel
         if(!empty($qs->pluck)) {
             $this->result->data = $instance->pluck(...$qs->pluck);
 
-        #sum
+            #sum
         }else if(!empty($qs->sum)) {
             $this->result->sum = $instance->sum($qs->sum);
 
-        #count
+            #count
         }else if(!empty($qs->count)) {
             $this->result->count = $instance->count($qs->count);
 
-        #first
+            #first
         }else if($qs->first) {
             $this->result->data = $instance->select(array_values($qs->fields))->first();
 
-        #only_summary
+            #only_summary
         }else if($qs->onlySummary) {
             $this->result->summary = $instance->select($qs->summaryFields)->first();
             $this->result->onlySummary = true;
 
-        #查询
+            #查询
         }else {
             #全量汇总
             if($qs->summary) {
@@ -100,14 +100,14 @@ class QSModel
             #page
             if(!empty($qs->page)) {
                 $pager = $instance->paginate($qs->limit,["*"],"page",$qs->page);
-                $this->result->data = $pager->items();
+                $this->result->data = $pager->items()->toArray();
                 $this->result->page = $pager->currentPage();
                 $this->result->limit = $qs->limit;
                 $this->result->total = $pager->total();
             }else {
                 #仅作为数据源
                 if(!$qs->asExportSource) {
-                    $this->result->data = $instance->get();
+                    $this->result->data = $instance->get()->toArray();
                 }else {
                     $this->result->instance = $instance;
                 }
@@ -154,22 +154,12 @@ class QSModel
     {
         if(empty($this->result->{$name})) {
             $this->result->{$name} = [];
-            return;
-        }
-
-        if($isModel) {
+        }else if($isModel) {
             $this->result->{$name} = collect($this->result->{$name})->toArray();
-            return;
-        }
-
-        if($this->result->{$name} instanceof \stdClass) {
+        }else if($this->result->{$name} instanceof \stdClass) {
             $this->result->{$name} = (array)$this->result->{$name};
-            return;
-        }
-
-        if(is_array($this->result->{$name})) {
+        }else {
             $this->result->{$name} = ArrayHealper::turnStdClassToArray($this->result->{$name});
-            return;
         }
     }
 }
