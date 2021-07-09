@@ -100,7 +100,7 @@ class QSModel
             #page
             if(!empty($qs->page)) {
                 $pager = $instance->paginate($qs->limit,["*"],"page",$qs->page);
-                $this->result->data = $pager->items()->toArray();
+                $this->result->data = $pager->items();
                 $this->result->page = $pager->currentPage();
                 $this->result->limit = $qs->limit;
                 $this->result->total = $pager->total();
