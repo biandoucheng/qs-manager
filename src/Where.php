@@ -197,36 +197,44 @@ class Where
             case "eq_or_between":
                 if(!is_array($con->val)) {
                     $con->opt = "=";
+                    $con->active();
                     break;
                 }
-                if(count($con->val) < 2) {
+                $len = count($con->val);
+                if($len >= 2) {
+                    $con->opt = "BETWEEN";
+                    $con->val = [$con->val[0],$con->val[1]];
+                    $con->active();
+                }else if($len == 1){
                     $con->opt = "=";
                     $con->val = $con->val[0];
-                }else {
-                    $con->opt = "BETWEEN";
+                    $con->active();
                 }
-                $con->active();
                 break;
             case "neq_or_nin":
-                if(is_array($con->val)) {
-                    $con->opt = "NOT IN";
-                }else {
+                if(!is_array($con->val)) {
                     $con->opt = "<>";
+                }else {
+                    $con->opt = "NOT IN";
                 }
                 $con->active();
                 break;
             case "neq_or_not_between":
                 if(!is_array($con->val)) {
                     $con->opt = "<>";
+                    $con->active();
                     break;
                 }
-                if(count($con->val) < 2) {
+                $len = count($con->val);
+                if($len >= 2) {
+                    $con->val = [$con->val[0],$con->val[1]];
+                    $con->opt = "NOT BETWEEN";
+                    $con->active();
+                }else if($len == 1) {
                     $con->opt = "<>";
                     $con->val = $con->val[0];
-                }else {
-                    $con->opt = "NOT BETWEEN";
+                    $con->active();
                 }
-                $con->active();
                 break;
             case "LIKE":
                 $con->opt = "LIKE";
@@ -277,38 +285,66 @@ class Where
             case "=":
                 if(!is_array($con->val)) {
                     $con->opt = "=";
-                    $con->active();
+                }else {
+                    $con->opt = "IN";
                 }
+                $con->active();
                 break;
             case "<>":
                 if(!is_array($con->val)) {
-                    $con->opt = "=";
-                    $con->active();
+                    $con->opt = "<>";
+                }else {
+                    $con->opt = "NOT IN";
                 }
+                $con->active();
                 break;
             case "IN":
-                if(is_array($con->val)) {
+                if(!is_array($con->val)) {
+                    $con->opt = "=";
+                }else {
                     $con->opt = "IN";
-                    $con->active();
                 }
+                $con->active();
                 break;
             case "NOT IN":
-                if(is_array($con->val)) {
+                if(!is_array($con->val)) {
+                    $con->opt = "<>";
+                }else {
                     $con->opt = "NOT IN";
-                    $con->active();
                 }
+                $con->active();
                 break;
             case "BETWEEN":
-                if(is_array($con->val) && count($con->val) >= 2) {
-                    $con->val = [$con->val[0],$con->val[1]];
+                if(!is_array($con->val)) {
+                    $con->opt = "=";
+                    $con->active();
+                    break;
+                }
+                $len = count($con->val);
+                if($len >= 2) {
                     $con->opt = "BETWEEN";
+                    $con->val = [$con->val[0],$con->val[1]];
+                    $con->active();
+                }else if($len == 1){
+                    $con->opt = "=";
+                    $con->val = $con->val[0];
                     $con->active();
                 }
                 break;
             case "NOT BETWEEN":
-                if(is_array($con->val) && count($con->val) >= 2) {
+                if(!is_array($con->val)) {
+                    $con->opt = "<>";
+                    $con->active();
+                    break;
+                }
+                $len = count($con->val);
+                if($len >= 2) {
                     $con->val = [$con->val[0],$con->val[1]];
                     $con->opt = "NOT BETWEEN";
+                    $con->active();
+                }else if($len == 1) {
+                    $con->opt = "<>";
+                    $con->val = $con->val[0];
                     $con->active();
                 }
                 break;
