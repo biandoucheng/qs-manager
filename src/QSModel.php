@@ -45,8 +45,10 @@ class QSModel
         #实例化数据库实例
         if(!empty($table)) {
             $instance = DB::table($table);
+            $itemType = "std_class";
         }else {
             $instance = $model;
+            $itemType = "model";
         }
 
         #where
@@ -123,10 +125,10 @@ class QSModel
             }
             foreach ($this->result->data as $item) {
                 foreach ($qs->attachFields as $field) {
-                    $item = (array)$item;
-                    if(isset($item[$field])) {
-                        $this->result->attach[$field][] = $item[$field];
+                    if($itemType == 'std_class') {
+                        $item = (array)$item;
                     }
+                    $this->result->attach[$field][] = $item[$field];
                 }
             }
         }
