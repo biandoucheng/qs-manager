@@ -50,30 +50,7 @@ class QSModel
         }
 
         #where
-        foreach ($qs->where as $field=>$cond) {
-            switch ($cond->opt) {
-                case "BETWEEN":
-                    $instance = $instance->whereBetween($cond->field,$cond->val);
-                    break;
-                case "NOT BETWEEN":
-                    $instance = $instance->whereNotBetween($cond->field,$cond->val);
-                    break;
-                case "IN":
-                    $instance = $instance->whereIn($cond->field,$cond->val);
-                    break;
-                case "NOT IN":
-                    $instance = $instance->whereNotIn($cond->field,$cond->val);
-                    break;
-                case "ISNULL":
-                    $instance = $instance->whereNull($cond->field);
-                    break;
-                case "IS NOT NULL":
-                    $instance = $instance->whereNotNull($cond->field);
-                    break;
-                default:
-                    $instance = $instance->where($cond->field,$cond->opt,$cond->val);
-            }
-        }
+        Where::write($instance,$qs);
 
         #pluck
         if(!empty($qs->pluck)) {

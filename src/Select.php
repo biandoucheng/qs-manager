@@ -58,7 +58,7 @@ class Select
         }
 
         #该字段指定输出
-        if($cell->show) {
+        if($cell->show || $cell->isShowAbleVal()) {
             return true;
         }
 

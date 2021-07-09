@@ -12,6 +12,7 @@ use QSM\Help\StrHealper;
 use QSM\Value\AllValue;
 use QSM\Value\NotSetValue;
 use QSM\Value\MergeValue;
+use QSM\QS;
 
 class Where
 {
@@ -376,5 +377,41 @@ class Where
     {
         $opt = strtolower($opt);
         return isset(self::$opts[$opt]);
+    }
+
+    /**
+     *@description 查询条件写入
+     *
+     *@author biandou
+     *@date 2021/7/9 13:53
+     *@param object $instance 查询实例
+     *@param QS $qs 查询结构
+     */
+    public static function write(object &$instance,QS &$qs)
+    {
+        foreach ($qs->where as $field=>$cond) {
+            switch ($cond->opt) {
+                case "BETWEEN":
+                    $instance = $instance->whereBetween($cond->field,$cond->val);
+                    break;
+                case "NOT BETWEEN":
+                    $instance = $instance->whereNotBetween($cond->field,$cond->val);
+                    break;
+                case "IN":
+                    $instance = $instance->whereIn($cond->field,$cond->val);
+                    break;
+                case "NOT IN":
+                    $instance = $instance->whereNotIn($cond->field,$cond->val);
+                    break;
+                case "ISNULL":
+                    $instance = $instance->whereNull($cond->field);
+                    break;
+                case "IS NOT NULL":
+                    $instance = $instance->whereNotNull($cond->field);
+                    break;
+                default:
+                    $instance = $instance->where($cond->field,$cond->opt,$cond->val);
+            }
+        }
     }
 }
