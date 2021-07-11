@@ -286,4 +286,17 @@ class Cell
     {
         return !empty($this->attach) || !empty($this->calAttach);
     }
+
+    /**
+     *@description 是否是信息附属字段
+     *
+     *@author biandou
+     *@date 2021/7/11 16:08
+     *
+     *@return bool
+     */
+    public function isInfoAttach():bool
+    {
+        return $this->attach;
+    }
 }

@@ -56,7 +56,7 @@ class QSConfig
             }
 
             #指定输出字段的处理
-            if($abs && !$cell->isAttach()) {
+            if($abs && !$cell->isInfoAttach()) {
                 #强制输出
                 if(isset($columns[$cell->name])) {
                     $cell->showNot = false;
