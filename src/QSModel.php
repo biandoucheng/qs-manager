@@ -116,6 +116,14 @@ class QSModel
             }
         }
 
+        #DB查询结果自动转数组
+        if($itemType == "std_class") {
+            #data
+            $this->toArray(empty($table),"data");
+            #summary
+            $this->toArray(empty($table),"summary");
+        }
+
         #字段提取
         if(!$qs->asExportSource && !empty($qs->attachFields) && !$qs->isOnlyOneLineResult()) {
             foreach ($qs->attachFields as $field) {
@@ -134,7 +142,7 @@ class QSModel
         }
 
         #输出为数组
-        if(!$qs->asExportSource && $toArray) {
+        if(!$qs->asExportSource && $itemType == "model" && $toArray) {
             #data
             $this->toArray(empty($table),"data");
             #summary
