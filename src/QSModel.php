@@ -131,6 +131,9 @@ class QSModel
                     if($itemType == 'std_class') {
                         $item = (array)$item;
                     }
+                    if(!isset($item[$field])) {
+                        continue;
+                    }
                     if(!isset($this->result->attach[$field])) {
                         $this->result->attach[$field] = [];
                     }
