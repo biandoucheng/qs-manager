@@ -126,19 +126,23 @@ class QSModel
 
         #字段提取
         if(!$qs->asExportSource && !empty($qs->attachFields) && !$qs->isOnlyOneLineResult()) {
-            foreach ($qs->attachFields as $field) {
-                if(!isset($this->result->attach[$field])) {
-                    $this->result->attach[$field] = [];
-                }
-            }
             foreach ($this->result->data as $item) {
                 foreach ($qs->attachFields as $field) {
                     if($itemType == 'std_class') {
                         $item = (array)$item;
                     }
-                    $this->result->attach[$field][] = $item[$field];
+                    if(!isset($this->result->attach[$field])) {
+                        $this->result->attach[$field] = [];
+                    }
+                    $this->result->attach[$field][$item[$field]] = true;
                 }
             }
+
+            #字段去重
+            foreach ($this->result->attach as $field=>&$attachs) {
+                $attachs = array_keys($attachs);
+            }
+            unset($attachs);
         }
 
         #输出为数组
