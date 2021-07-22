@@ -28,11 +28,6 @@ class Group
             return false;
         }
 
-        #不出现的字段不能分组
-        if(!$cell->show || $cell->showNot) {
-            return false;
-        }
-
         #指定分组字段要参与分组
         if($cell->group) {
             return true;
