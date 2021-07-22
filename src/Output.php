@@ -66,6 +66,11 @@ class Output
     public $summary = false;
 
     /*
+     * @var bool 是否只进行汇总,不查询详细数据
+     * */
+    public $onlySummary = false;
+
+    /*
      * @var array 需要提取出来,做附属信息查询的字段值
      * */
     public $attachFields = [];
@@ -106,6 +111,7 @@ class Output
         $qs->first          = $this->first;
         $qs->pluck          = $this->pluck;
         $qs->summary        = $this->summary;
+        $qs->onlySummary    = $this->onlySummary;
         $qs->attachFields   = $this->attachFields;
     }
 }
