@@ -150,7 +150,7 @@ class QSManager
 
             #header头导出
             if(Header::valid($cell,$qs)) {
-                $qs->header[$realField] = $cell->alias;
+                $qs->header[$field] = $cell->alias;
             }
         }
 
