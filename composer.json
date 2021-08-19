@@ -11,10 +11,10 @@
     ],
     "homepage": "https://github.com/biandoucheng/qs-manager",
     "require": {
-        "php": "^7.0"
+        "php": ">=7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "7.5"
+        "phpunit/phpunit": ">=7.5"
     },
     "autoload": {
         "psr-4": {
