@@ -65,6 +65,13 @@ class Cell
     public $isSummaryField;
 
     /*
+     * @var string 汇总字段汇总计算方法
+     * 该字段只有被指定为isSummaryField时才会启用
+     * 当字段被指定为isSummaryField时，如果这里是空的，则会采用cal字段的值，如果cal也是空
+     * */
+    public $sumCal;
+
+    /*
      * @var mixed 默认值
      * */
     public $def;
@@ -183,6 +190,7 @@ class Cell
         $this->showWithOut = [];
         $this->field = "";
         $this->isSummaryField = false;
+        $this->sumCal = "";
         $this->group = false;
         $this->order = "";
         $this->groupWith = [];

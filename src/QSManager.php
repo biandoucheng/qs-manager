@@ -118,7 +118,11 @@ class QSManager
 
                 #汇总字段收集
                 if($cell->isSummaryField) {
-                    $qs->summaryFields[] = DB::raw($cell->cal);
+                    if($cell->sumCal){
+                        $qs->summaryFields[] = DB::raw($cell->sumCal);
+                    }else{
+                        $qs->summaryFields[] = DB::raw($cell->cal);
+                    }
                 }
             }
 
